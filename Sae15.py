@@ -18,8 +18,7 @@ Event_Table = np.array([])
 #Creation of the .CSV file
 fic = open(r"C:\Users\cleme\Documents\IUT\SAE 15\Fichier_Traité.csv", "w")
 test = 0
-nbrtrame = 0
-Event = "Heure ; Envoyeur ; Port ; Destinataire ; Flag ; Seq ; Ack ; Win ; Options ; Length"
+Event = "Heure ; Sender ; Port ; Destinataire ; Flag ; Seq ; Ack ; Win ; Options ; Length"
 fic.write(Event + "\n")
 characters = ":"
 for event in ress:
@@ -40,7 +39,7 @@ for event in ress:
         testip1 = ''
         port = ''
         destination = ''
-        expediteur = ''
+        Sender = ''
         nbrtrame = nbrtrame + 1
         #Ajout heure
         texte = event.split(' ')
@@ -49,32 +48,32 @@ for event in ress:
         testip1 = texte[2].split(".")
         if len(testip1) > 1 :
             if len(testip1) == 2:
-                expediteur = testip1[0]
+                Sender = testip1[0]
                 port = testip1[1]
             if len(testip1) == 3:
-                expediteur = testip1[0] + '.' + testip1[1]
+                Sender = testip1[0] + '.' + testip1[1]
                 port = testip1[2]
             if len(testip1) == 4:
-                expediteur = testip1[0] + '.' + testip1[1] + '.' + testip1[2]
+                Sender = testip1[0] + '.' + testip1[1] + '.' + testip1[2]
                 port = testip1[3]
             if len(testip1) == 5:
-                expediteur = testip1[0] + '.' + testip1[1] + '.' + testip1[2] + '.' + testip1[3]
+                Sender = testip1[0] + '.' + testip1[1] + '.' + testip1[2] + '.' + testip1[3]
                 port = testip1[4]
             if len(testip1) == 6 :
-                expediteur = testip1[0] + '.' + testip1[1] + '.' + testip1[2] + '.' + testip1[3] + '.' + testip1[4]
+                Sender = testip1[0] + '.' + testip1[1] + '.' + testip1[2] + '.' + testip1[3] + '.' + testip1[4]
                 port = testip1[5]
             if len(testip1) == 7 :
-                expediteur = testip1[0] + '.' + testip1[1] + '.' + testip1[2] + '.' + testip1[3] + '.' + testip1[4] + '.' + testip1[5]
+                Sender = testip1[0] + '.' + testip1[1] + '.' + testip1[2] + '.' + testip1[3] + '.' + testip1[4] + '.' + testip1[5]
                 port = testip1[6]
             if len(testip1) == 8 :
-                expediteur = testip1[0] + '.' + testip1[1] + '.' + testip1[2] + '.' + testip1[3] + '.' + testip1[4] + '.' + testip1[5] + '.' + testip1[6]
+                Sender = testip1[0] + '.' + testip1[1] + '.' + testip1[2] + '.' + testip1[3] + '.' + testip1[4] + '.' + testip1[5] + '.' + testip1[6]
                 port = testip1[7]
         else :
-            expediteur = texte[2]
+            Sender = texte[2]
             port = ''
         #Destination
         destination = texte[4]
-        destination = destination.replace(characters,"")
+        destination = destination.replace(characters,"")#Permit to remove ":" who 
         #Flag
         texte = event.split("[")
         if len(texte) > 1:
@@ -135,5 +134,5 @@ for event in ress:
             option = texte2[0]
         else:
             option = ''
-        Event=heure + ';' + expediteur  + ';' + port + ';' + destination + ';' + flag + ';' + seq + ';' + ack + ';' + win + ";" + option + ';' + length
+        Event=heure + ';' + Sender  + ';' + port + ';' + destination + ';' + flag + ';' + seq + ';' + ack + ';' + win + ";" + option + ';' + length
         fic.write(Event + "\n")
