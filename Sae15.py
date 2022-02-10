@@ -18,7 +18,7 @@ Event_Table = np.array([])
 #Creation of the .CSV file
 fic = open(r"C:\Users\cleme\Documents\IUT\SAE 15\Fichier_Traité.csv", "w")
 test = 0
-Event = "Heure ; Sender ; Port ; Destinataire ; Flag ; Seq ; Ack ; Win ; Options ; Length"
+Event = "Hour ; Sender ; Port ; Recipeint ; Flag ; Seq ; Ack ; Win ; Options ; Length"
 fic.write(Event + "\n")
 characters = ":"
 for event in ress:
@@ -41,9 +41,9 @@ for event in ress:
         destination = ''
         Sender = ''
         nbrtrame = nbrtrame + 1
-        #Ajout heure
+        #Adding Hour
         texte = event.split(' ')
-        heure = texte[0]
+        Hour = texte[0]
         #Sender
         testip1 = texte[2].split(".")
         if len(testip1) > 1 :
@@ -134,5 +134,5 @@ for event in ress:
             option = texte2[0]
         else:
             option = ''
-        Event=heure + ';' + Sender  + ';' + port + ';' + destination + ';' + flag + ';' + seq + ';' + ack + ';' + win + ";" + option + ';' + length
+        Event=Hour + ';' + Sender  + ';' + port + ';' + destination + ';' + flag + ';' + seq + ';' + ack + ';' + win + ";" + option + ';' + length
         fic.write(Event + "\n")
